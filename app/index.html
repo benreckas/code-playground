@@ -6,15 +6,127 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <link rel="stylesheet" href="/node_modules/reset-css/reset.css">
   <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/node_modules/@fortawesome/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="./css/styles.css">
 </head>
 
 <body>
-  <h1>Code Playground</h1>
+  <header class="mb-3">
+    <nav class="navbar navbar-dark bg-dark">
+      <a href="#" class="navbar-brand">
+        <h1>Master Hunter</h1>
+      </a>
+    </nav>
+  </header>
+
+  <main class="container-fluid">
+    <section id="legendary-animals">
+      <div class="row mb-3">
+        <div class="col-md-10 offset-md-1">
+          <h2>Legendary Animals <button class="btn btn-dark float-right">Hide section</button></h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-10 offset-md-1">
+          <div class="legendary-animal-container">
+
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Legendary Elk <span class="fas fa-crosshairs"></span></h4>
+                <div class="card-text">
+                  <h5>Location:</h5>
+                  <p>Just East of Bacchus Station</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pelts">
+      <div class="row mb-3">
+        <div class="col-md-10 offset-md-1"><h2>Pelts <button class="btn btn-dark float-right">Hide section</button></h2></div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-10 offset-md-1">
+          <p>Add required pelts to craft all items for:</p>
+          <div class="checkbox-flex-container">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                <span class="fas fa-paw"></span> Trapper
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                <span class="fas fa-hiking"></span> Satchels
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                <span class="fas fa-horse"></span> Saddles
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                <span class="fas fa-campground"></span> Camp
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-10 offset-md-1">
+          <button class="btn btn-success"><span class="fas fa-plus-circle"></span> Add pelt</button>
+          <button class="btn btn-danger float-right"><span class="fas fa-trash"></span> Delete all</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-10 offset-md-1">
+          <table class="table">
+            <thead>
+              <tr>
+                <th id="delete-header">Delete</th>
+                <th id="name-header">Animal (Click to edit)</th>
+                <th id="quantity-header">Pelts needed</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td id="delete-item"><button class="btn btn-danger"><span class="fas fa-times"></span></button></td>
+                <td id="name-item" class="animal-name" contenteditable="true">Animal name</td>
+                <td id="quantity-item" class="pelt-quantity">
+                  <div class="input-group">
+                    <div class="input-group-prepend" id="button-addon3">
+                      <button class="btn btn-danger" type="button"><span class="fas fa-minus"></span></button>
+                    </div>
+                    <input type="text" class="form-control text-center" placeholder="" aria-label="Example text with two button addons" aria-describedby="button-addon3" maxlength="2">
+                    <div class="input-group-append" id="button-addon3">
+                      <button class="btn btn-success" type="button"><span class="fas fa-plus"></span></button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- JaveScript -->
+  <script type="text/javascript" src="./js/crafting.js"></script>
   <script type="text/javascript" src="./js/scripts.js"></script>
   <script type="text/javascript" src="/node_modules/jquery/dist/jquery.min.js"></script>
 </body>

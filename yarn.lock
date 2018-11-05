@@ -16,6 +16,11 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
+"@fortawesome/fontawesome-free@^5.5.0":
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.5.0.tgz#0c6c53823d04457ae669cd19567b8a21dbb4fcfd"
+  integrity sha512-p4lu0jfj5QN013ddArh99r3OXZ/fp9rbovs62LfaO70OMBsAXxtNd0lAq/97fitrscR0fqfd+/a5KNcp6Sh/0A==
+
 acorn-jsx@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/acorn-jsx/-/acorn-jsx-5.0.0.tgz#958584ddb60990c02c97c1bd9d521fce433bb101"
@@ -410,10 +415,6 @@ flat-cache@^1.2.1:
     del "^2.0.2"
     graceful-fs "^4.1.2"
     write "^0.2.1"
-
-font-awesome@^4.7.0:
-  version "4.7.0"
-  resolved "https://registry.yarnpkg.com/font-awesome/-/font-awesome-4.7.0.tgz#8fa8cf0411a1a31afd07b06d2902bb9fc815a133"
 
 fs.realpath@^1.0.0:
   version "1.0.0"
@@ -855,6 +856,11 @@ require-uncached@^1.0.3:
   dependencies:
     caller-path "^0.1.0"
     resolve-from "^1.0.0"
+
+reset-css@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/reset-css/-/reset-css-4.0.1.tgz#1f8456a8be478bc435ce9775b7878ec82cca6b05"
+  integrity sha512-aQFi5IxXVegVTfz0hOmXsPSmc8tlPDQOkfatHfPu3Cm6id7UXM4OzXfsaUWJEgV2yrCngsagpIb3wHXPjKAx+Q==
 
 resolve-from@^1.0.0:
   version "1.0.1"
