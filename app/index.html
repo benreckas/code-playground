@@ -5,14 +5,52 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Star Wars API</title>
   <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/node_modules/@fortawesome/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="./css/styles.css">
 </head>
 
 <body>
-  <h1>Code Playground</h1>
+  <main>
+    <h1>Star Wars API</h1>
+
+    <form id="select-form" class="col-md-12">
+      <div class="form-group">
+        <label for="resource-select">Select a resource</label>
+        <select id="resource-select" class="form-control">
+          <option disabled selected value></option>
+          <option>Characters</option>
+          <option disabled>Films (Coming Soon)</option>
+          <option disabled>Starships (Coming Soon)</option>
+          <option disabled>Vehicles (Coming Soon)</option>
+          <option disabled>Species (Coming Soon)</option>
+          <option disabled>Planets (Coming Soon)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <div id="input-loader" class="hidden">
+          <span class="fas fa-circle"></span>
+          <span class="fas fa-circle"></span>
+          <span class="fas fa-circle"></span>
+        </div>
+
+        <label for="item-select">Choose a resource first</label>
+        <select id="item-select" class="form-control" disabled>
+          <option disabled selected></option>
+        </select>
+      </div>
+    </form>
+
+    <div id="content-loader" class="col-md-12 hidden">
+      <span class="fab fa-jedi-order"></span>
+    </div>
+
+    <div id="character-card">
+      <!-- Character info here -->
+    </div>
+  </main>
 
   <!-- JaveScript -->
   <script type="text/javascript" src="./js/scripts.js"></script>
