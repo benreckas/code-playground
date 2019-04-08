@@ -1,8 +1,9 @@
 const globals = {
   /** Properties */
   itemSelect: document.querySelector('#item-select'),
+  itemLabel: document.querySelector('[for="item-select"]'),
   resourceSelect: document.querySelector('#resource-select'),
-  characterCard: document.querySelector('#character-card'),
+  content: document.querySelector('#content'),
   contentLoader: document.querySelector('#content-loader'),
   inputLoader: document.querySelector('#input-loader'),
   form: document.querySelector('#select-form'),
@@ -19,6 +20,11 @@ const globals = {
   toggleInputLoadState() { this.inputLoader.classList.toggle('hidden') },
 
   toggleInputDisabledState() { this.itemSelect.toggleAttribute('disabled') },
+
+  resetItemSelect() {
+    this.itemSelect.setAttribute('disabled', true);
+    this.itemSelect.innerHTML = '<option disabled selected value></option>';
+  },
 };
 
 /** Star Wars Base Class */
@@ -26,32 +32,33 @@ class StarWarsBaseClass {
 
 }
 
-/** Character Class */
-class Character extends StarWarsBaseClass {
-  constructor(character, ...args) {
+/** Person Class */
+class Person extends StarWarsBaseClass {
+  constructor(person, ...args) {
     super(args);
 
-    this.name = character.name;
-    this.gender = character.gender;
-    this.birthYear = character.birth_year;
-    this.height = character.height;
-    this.mass = character.mass;
-    this.eyeColor = character.eye_color;
-    this.hairColor = character.hair_color;
-    this.homeworld = this._getHomeworld(character.homeworld);
-    this.species = this._getSpecies(character.species);
+    this.name = person.name;
+    this.gender = person.gender;
+    this.birthYear = person.birth_year;
+    this.height = person.height;
+    this.mass = person.mass;
+    this.eyeColor = person.eye_color;
+    this.hairColor = person.hair_color;
+    this.homeworld = this._getHomeworld(person.homeworld);
+    this.species = this._getSpecies(person.species);
 
-    this.characterCard = globals.characterCard;
-
+    this.content = globals.content;
     this.card = document.createElement('div');
+
+    this.createPersonHtml();
   }
 
   /** Methods */
-  async createCharacterHtml() {
+  async createPersonHtml() {
     const homeworld = await this.homeworld;
     const species = await this.species;
 
-    this.card.classList.add('col-md-12', 'character-card');
+    this.card.classList.add('col-md-12', 'person-card');
     this.card.innerHTML = `
       <div class="card">
         <div class="card-header">
@@ -64,15 +71,15 @@ class Character extends StarWarsBaseClass {
           <p>Mass: ${this.mass} kg</p>
           <p>Eye color: ${this.eyeColor}</p>
           <p>Hair color: ${this.hairColor}</p>
-          </div>
+        </div>
         <div class="card-footer">
-          <a class="btn btn-success" href="${homeworld.url}">Homeworld: ${homeworld.name}</a>
-          <a class="btn btn-default" href="${species.url}">Species: ${species.name}</a>
+          <a class="btn btn-success" href="${homeworld.url}"><span class="fas fa-globe-europe"></span> Homeworld: ${homeworld.name}</a>
+          <a class="btn btn-primary" href="${species.url}"><span class="fas fa-dna"></span> Species: ${species.name}</a>
         <div>
       </div>
     `;
 
-    this.characterCard.appendChild(this.card);
+    this.content.appendChild(this.card);
   }
 
   async _getHomeworld(url) {
@@ -98,46 +105,101 @@ class Character extends StarWarsBaseClass {
   }
 }
 
+class Film extends StarWarsBaseClass {
+  constructor(film, ...args) {
+    super(...args);
+
+    console.log(film);
+  }
+}
+
+class Starship extends StarWarsBaseClass {
+  constructor(starship, ...args) {
+    super(...args);
+
+    console.log(starship);
+  }
+}
+
+class Vehicle extends StarWarsBaseClass {
+  constructor(vehicle, ...args) {
+    super(...args);
+
+    console.log(vehicle);
+  }
+}
+
+class Species extends StarWarsBaseClass {
+  constructor(species, ...args) {
+    super(...args);
+
+    console.log(species);
+  }
+}
+
+class Planet extends StarWarsBaseClass {
+  constructor(planet, ...args) {
+    super(...args);
+
+    console.log(planet);
+  }
+}
+
 /** Functions */
-async function getCharacter(e) {
-  const characterUrl = e.target.selectedOptions[0].dataset.url;
-  globals.characterCard.innerHTML = '';
+async function getResource(e) {
+  const { resource } = globals.resourceSelect.selectedOptions[0].dataset;
+  const { url } = e.target.selectedOptions[0].dataset;
+  globals.content.innerHTML = '';
   globals.toggleContentLoadState();
 
   try {
-    const response = await fetch(characterUrl, globals.fetchOptions);
-    const characterData = await response.json();
-
-    const character = new Character(characterData);
-    character.createCharacterHtml();
+    const response = await fetch(url, globals.fetchOptions);
+    const data = await response.json();
 
     globals.toggleContentLoadState();
+
+    // eslint-disable-next-line default-case
+    switch (resource) {
+      case 'person':
+        return new Person(data);
+      case 'film':
+        return new Film(data);
+      case 'starship':
+        return new Starship(data);
+      case 'vehicle':
+        return new Vehicle(data);
+      case 'species':
+        return new Species(data);
+      case 'planet':
+        return new Planet(data);
+    }
   } catch (error) {
     // eslint-disable-next-line no-console
     console.log(error);
   }
 }
 
-async function addCharacterToSelect(character) {
+async function addResultToSelect(result) {
+  const { resource } = globals.resourceSelect.selectedOptions[0].dataset;
   const option = document.createElement('option');
-  option.textContent = character.name;
-  option.dataset.url = character.url;
+  option.textContent = resource === 'film' ? result.title : result.name;
+  option.dataset.url = result.url;
 
   globals.itemSelect.appendChild(option);
 }
 
-async function getAllStarWarsCharacters(url) {
+async function getSelectedResource(url) {
   try {
     const response = await fetch(url, globals.fetchOptions);
     const { results, next } = await response.json();
 
-    results.forEach(character => addCharacterToSelect(character));
+    results.forEach(result => addResultToSelect(result));
 
-    if (next) return getAllStarWarsCharacters(next);
+    if (next) return getSelectedResource(next);
 
     globals.toggleInputLoadState();
     globals.toggleInputDisabledState();
-    globals.itemSelect.addEventListener('input', getCharacter);
+    globals.itemSelect.addEventListener('input', getResource);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.log(error);
@@ -145,31 +207,13 @@ async function getAllStarWarsCharacters(url) {
 }
 
 async function selectResource(e) {
-  const selectedResource = e.target.value;
+  const { url, label } = e.target.selectedOptions[0].dataset;
 
-  switch (selectedResource) {
-    case 'Characters':
-      getAllStarWarsCharacters('https://swapi.co/api/people/');
-      globals.toggleInputLoadState();
-      break;
-    case 'Films':
-      getAllStarWarsCharacters('https://swapi.co/api/films/');
-      break;
-    case 'Starships':
-      getAllStarWarsCharacters('https://swapi.co/api/starships/');
-      break;
-    case 'Vehicles':
-      getAllStarWarsCharacters('https://swapi.co/api/vehicles/');
-      break;
-    case 'Species':
-      getAllStarWarsCharacters('https://swapi.co/api/species/');
-      break;
-    case 'Planets':
-      getAllStarWarsCharacters('https://swapi.co/api/planets/');
-      break;
-    default:
-      break;
-  }
+  getSelectedResource(url);
+
+  globals.itemLabel.textContent = `Choose a ${label}`;
+  globals.resetItemSelect();
+  globals.toggleInputLoadState();
 }
 
 /** Onload */
