@@ -1,10 +1,6 @@
 import globals from './globals';
 
 export class StarWarsResource {
-  getFilms(urls) {
-    urls.forEach(async url => this.getResource(url));
-  }
-
   async getResource(url) {
     try {
       const response = await fetch(url, globals.fetchOptions);
@@ -45,6 +41,7 @@ export class Person extends StarWarsResource {
   async _createFilmHtml() {
     this.films.forEach(async (url) => {
       const film = await this.getResource(url);
+      console.log('film:', film); // eslint-disable-line no-console
     });
   }
 
