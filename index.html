@@ -1,95 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Star Wars API</title>
-  <link rel="stylesheet" href="./assets/bootstrap-4.1.3/css/bootstrap.min.css">
-  <link rel="stylesheet" href="./assets/fontawesome-5.8.1/css/all.min.css">
-  <link rel="stylesheet" href="./app/css/styles.css">
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Star Wars API</title>
+    <link rel="stylesheet" href="./assets/fontawesome-5.8.1/css/all.min.css">
+  </head>
 
-<body>
-  <main>
-    <h1>Star Wars API</h1>
+  <body>
+    <main>
+      <h1>Star Wars API</h1>
 
-    <form id="select-form" class="col-md-12">
-      <div class="form-group">
-        <label for="resource-select">Select a resource</label>
-        <select id="resource-select" class="form-control">
-          <option disabled selected value></option>
-          <option
-            data-url="https://swapi.co/api/people/"
-            data-label="Person"
-            data-resource="person"
-          >
-            People
-          </option>
-          <option
-            data-url="https://swapi.co/api/films/"
-            data-label="Film"
-            data-resource="film"
-          >
-            Films
-          </option>
-          <option
-            data-url="https://swapi.co/api/starships/"
-            data-label="Starship"
-            data-resource="starship"
-          >
-            Starships
-          </option>
-          <option
-            data-url="https://swapi.co/api/vehicles/"
-            data-label="Vehicle"
-            data-resource="vehicle"
-          >
-            Vehicles
-          </option>
-          <option
-            data-url="https://swapi.co/api/species/"
-            data-label="Species"
-            data-resource="species"
-          >
-            Species
-          </option>
-          <option
-            data-url="https://swapi.co/api/planets/"
-            data-label="Planet"
-            data-resource="planet"
-          >
-            Planets
-          </option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <div id="input-loader" class="hidden">
-          <span class="fas fa-circle"></span>
-          <span class="fas fa-circle"></span>
-          <span class="fas fa-circle"></span>
+      <form id="select-form" class="col-md-12">
+        <div class="form-group">
+          <label for="resource-select">Select a resource</label>
+          <select id="resource-select" class="form-control">
+            <option disabled selected value></option>
+            <option
+              data-url="https://swapi.co/api/people/"
+              data-label="Person"
+              data-resource="person"
+            >
+              People
+            </option>
+            <option
+              data-url="https://swapi.co/api/films/"
+              data-label="Film"
+              data-resource="film"
+            >
+              Films
+            </option>
+            <option
+              data-url="https://swapi.co/api/starships/"
+              data-label="Starship"
+              data-resource="starship"
+            >
+              Starships
+            </option>
+            <option
+              data-url="https://swapi.co/api/vehicles/"
+              data-label="Vehicle"
+              data-resource="vehicle"
+            >
+              Vehicles
+            </option>
+            <option
+              data-url="https://swapi.co/api/species/"
+              data-label="Species"
+              data-resource="species"
+            >
+              Species
+            </option>
+            <option
+              data-url="https://swapi.co/api/planets/"
+              data-label="Planet"
+              data-resource="planet"
+            >
+              Planets
+            </option>
+          </select>
         </div>
 
-        <label for="item-select">Choose a resource first</label>
-        <select id="item-select" class="form-control" disabled>
-          <option disabled selected></option>
-        </select>
+        <div class="form-group">
+          <div id="input-loader" class="hidden">
+            <span class="fas fa-circle"></span>
+            <span class="fas fa-circle"></span>
+            <span class="fas fa-circle"></span>
+          </div>
+
+          <label for="item-select">Choose a resource first</label>
+          <select id="item-select" class="form-control" disabled>
+            <option disabled selected></option>
+          </select>
+        </div>
+      </form>
+
+      <div id="content-loader" class="col-md-12 hidden">
+        <span class="fab fa-jedi-order"></span>
       </div>
-    </form>
 
-    <div id="content-loader" class="col-md-12 hidden">
-      <span class="fab fa-jedi-order"></span>
-    </div>
+      <section id="content">
 
-    <section id="content">
+      </section>
+    </main>
 
-    </section>
-  </main>
-
-  <!-- JaveScript -->
-  <script type="text/javascript" src="./app/js/scripts.js"></script>
-</body>
+    <!-- JaveScript -->
+    <script type="text/javascript" src="./dist/bundle.js"></script>
+  </body>
 
 </html>

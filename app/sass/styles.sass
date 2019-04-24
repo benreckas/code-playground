@@ -1,9 +1,8 @@
-// Variables
-$very-light-gray: #fafafa
-$very-dark-gray: #343a40
-$star-wars-yellow: #f2e44d
+// Imports
+@import '../../assets/bootstrap-4.1.3/css/bootstrap.min'
 
-$medium-breakpoint: 768px
+@import './variables'
+@import './bootstrap-overrides'
 
 // Selectors
 html
@@ -15,10 +14,26 @@ body
 
 h1
   color: $very-dark-gray
-  font-size: 32px
-  margin: 40px 0
+  font-size: calc(100vw / 8)
+  font-weight: 800
   text-align: center
   text-transform: uppercase
+
+/** Attributes */
+.attributes
+  display: flex
+  flex-wrap: wrap
+  justify-content: space-around
+  padding: 0
+  margin: 0
+
+  li
+    border-radius: 5px
+    display: inline
+    list-style-type: none
+    margin: 10px
+    padding: 5px 10px
+
 
 /** Form */
 #select-form
