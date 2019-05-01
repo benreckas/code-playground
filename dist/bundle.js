@@ -179,72 +179,42 @@ function () {
   }
 
   _createClass(StarWarsResource, [{
-    key: "getFilms",
-    value: function getFilms(urls) {
-      var _this = this;
-
-      urls.forEach(
-      /*#__PURE__*/
-      function () {
-        var _ref = _asyncToGenerator(
-        /*#__PURE__*/
-        regeneratorRuntime.mark(function _callee(url) {
-          return regeneratorRuntime.wrap(function _callee$(_context) {
-            while (1) {
-              switch (_context.prev = _context.next) {
-                case 0:
-                  return _context.abrupt("return", _this.getResource(url));
-
-                case 1:
-                case "end":
-                  return _context.stop();
-              }
-            }
-          }, _callee);
-        }));
-
-        return function (_x) {
-          return _ref.apply(this, arguments);
-        };
-      }());
-    }
-  }, {
     key: "getResource",
     value: function () {
       var _getResource = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee2(url) {
+      regeneratorRuntime.mark(function _callee(url) {
         var response;
-        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context.prev = _context.next) {
               case 0:
-                _context2.prev = 0;
-                _context2.next = 3;
+                _context.prev = 0;
+                _context.next = 3;
                 return fetch(url, _globals__WEBPACK_IMPORTED_MODULE_0__["default"].fetchOptions);
 
               case 3:
-                response = _context2.sent;
-                _context2.next = 6;
+                response = _context.sent;
+                _context.next = 6;
                 return response.json();
 
               case 6:
-                return _context2.abrupt("return", _context2.sent);
+                return _context.abrupt("return", _context.sent);
 
               case 9:
-                _context2.prev = 9;
-                _context2.t0 = _context2["catch"](0);
-                console.log(_context2.t0); // eslint-disable-line no-console
+                _context.prev = 9;
+                _context.t0 = _context["catch"](0);
+                console.log(_context.t0); // eslint-disable-line no-console
 
               case 12:
               case "end":
-                return _context2.stop();
+                return _context.stop();
             }
           }
-        }, _callee2, null, [[0, 9]]);
+        }, _callee, null, [[0, 9]]);
       }));
 
-      function getResource(_x2) {
+      function getResource(_x) {
         return _getResource.apply(this, arguments);
       }
 
@@ -264,7 +234,7 @@ function (_StarWarsResource) {
   _inherits(Person, _StarWarsResource);
 
   function Person(person) {
-    var _this2;
+    var _this;
 
     _classCallCheck(this, Person);
 
@@ -272,57 +242,114 @@ function (_StarWarsResource) {
       args[_key - 1] = arguments[_key];
     }
 
-    _this2 = _possibleConstructorReturn(this, _getPrototypeOf(Person).call(this, args));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Person).call(this, args));
     console.log(person); // eslint-disable-line no-console
 
-    _this2.name = person.name;
-    _this2.gender = person.gender;
-    _this2.birthYear = person.birth_year;
-    _this2.height = person.height;
-    _this2.mass = person.mass;
-    _this2.eyeColor = person.eye_color;
-    _this2.hairColor = person.hair_color;
-    _this2.homeworld = _this2.getResource(person.homeworld);
-    _this2.species = _this2.getResource(person.species);
-    _this2.films = person.films;
-    _this2.content = _globals__WEBPACK_IMPORTED_MODULE_0__["default"].content;
-    _this2.card = document.createElement('div');
+    _this.name = person.name;
+    _this.gender = person.gender;
+    _this.birthYear = person.birth_year;
+    _this.height = person.height;
+    _this.mass = person.mass;
+    _this.eyeColor = person.eye_color;
+    _this.hairColor = person.hair_color;
+    _this.homeworld = _this.getResource(person.homeworld);
+    _this.species = _this.getResource(person.species);
+    _this.films = person.films;
+    _this.content = _globals__WEBPACK_IMPORTED_MODULE_0__["default"].content;
+    _this.card = document.createElement('div');
 
-    _this2._createPersonHtml();
+    _this._createPersonHtml();
 
-    return _this2;
+    return _this;
   }
 
   _createClass(Person, [{
+    key: "_createPersonHtml",
+    value: function () {
+      var _createPersonHtml2 = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee2() {
+        var homeworld, species;
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return this.homeworld;
+
+              case 2:
+                homeworld = _context2.sent;
+                _context2.next = 5;
+                return this.species;
+
+              case 5:
+                species = _context2.sent;
+                this.card.classList.add('col-md-12', 'person-card');
+                _context2.t0 = "\n      <div class=\"card\">\n        <div class=\"card-header\">\n          <h4>".concat(this.name, "</h4>\n        </div>\n        <div class=\"card-body\">\n          <ul class=\"col-md-9 attributes\">\n            <li>Gender: ").concat(this.gender, "</li>\n            <li>Birth year: ").concat(this.birthYear, "</li>\n            <li>Height: ").concat(this.height, " cm</li>\n            <li>Mass: ").concat(this.mass, " kg</li>\n            <li>Eye color: ").concat(this.eyeColor, "</li>\n            <li>Hair color: ").concat(this.hairColor, "</li>\n          </ul>\n          ");
+                _context2.next = 10;
+                return this._createFilmHtml();
+
+              case 10:
+                _context2.t1 = _context2.sent;
+                _context2.t2 = homeworld.url;
+                _context2.t3 = homeworld.name;
+                _context2.t4 = species.url;
+                _context2.t5 = species.name;
+                this.card.innerHTML = _context2.t0.concat.call(_context2.t0, _context2.t1, "\n        </div>\n        <div class=\"card-footer\">\n          <a class=\"btn btn-success\" href=\"").concat(_context2.t2, "\"><span class=\"fas fa-globe-europe\"></span> Homeworld: ").concat(_context2.t3, "</a>\n          <a class=\"btn btn-primary\" href=\"").concat(_context2.t4, "\"><span class=\"fas fa-dna\"></span> Species: ").concat(_context2.t5, "</a>\n        <div>\n      </div>\n    ");
+                this.content.appendChild(this.card);
+
+              case 17:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function _createPersonHtml() {
+        return _createPersonHtml2.apply(this, arguments);
+      }
+
+      return _createPersonHtml;
+    }()
+  }, {
     key: "_createFilmHtml",
     value: function () {
       var _createFilmHtml2 = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee4() {
-        var _this3 = this;
+        var _this2 = this;
 
+        var list;
         return regeneratorRuntime.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
+                list = document.createElement('ul');
+                list.classList.add('col-md-3', 'films');
                 this.films.forEach(
                 /*#__PURE__*/
                 function () {
-                  var _ref2 = _asyncToGenerator(
+                  var _ref = _asyncToGenerator(
                   /*#__PURE__*/
                   regeneratorRuntime.mark(function _callee3(url) {
-                    var film;
+                    var film, item;
                     return regeneratorRuntime.wrap(function _callee3$(_context3) {
                       while (1) {
                         switch (_context3.prev = _context3.next) {
                           case 0:
                             _context3.next = 2;
-                            return _this3.getResource(url);
+                            return _this2.getResource(url);
 
                           case 2:
                             film = _context3.sent;
+                            item = document.createElement('li');
+                            item.textContent = film.title;
+                            debugger; //eslint-disable-line
 
-                          case 3:
+                            list.appendChild(item);
+
+                          case 7:
                           case "end":
                             return _context3.stop();
                         }
@@ -330,12 +357,14 @@ function (_StarWarsResource) {
                     }, _callee3);
                   }));
 
-                  return function (_x3) {
-                    return _ref2.apply(this, arguments);
+                  return function (_x2) {
+                    return _ref.apply(this, arguments);
                   };
                 }());
+                console.log(list);
+                return _context4.abrupt("return", list);
 
-              case 1:
+              case 5:
               case "end":
                 return _context4.stop();
             }
@@ -348,48 +377,6 @@ function (_StarWarsResource) {
       }
 
       return _createFilmHtml;
-    }()
-  }, {
-    key: "_createPersonHtml",
-    value: function () {
-      var _createPersonHtml2 = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee5() {
-        var homeworld, species;
-        return regeneratorRuntime.wrap(function _callee5$(_context5) {
-          while (1) {
-            switch (_context5.prev = _context5.next) {
-              case 0:
-                _context5.next = 2;
-                return this.homeworld;
-
-              case 2:
-                homeworld = _context5.sent;
-                _context5.next = 5;
-                return this.species;
-
-              case 5:
-                species = _context5.sent;
-                this.card.classList.add('col-md-12', 'person-card');
-                this.card.innerHTML = "\n      <div class=\"card\">\n        <div class=\"card-header\">\n          <h4>".concat(this.name, "</h4>\n        </div>\n        <div class=\"card-body\">\n          <ul class=\"col-md-9 attributes\">\n            <li>Gender: ").concat(this.gender, "</li>\n            <li>Birth year: ").concat(this.birthYear, "</li>\n            <li>Height: ").concat(this.height, " cm</li>\n            <li>Mass: ").concat(this.mass, " kg</li>\n            <li>Eye color: ").concat(this.eyeColor, "</li>\n            <li>Hair color: ").concat(this.hairColor, "</li>\n          </ul>\n          <ul class=\"col-md-3 films\">\n          </ul>\n        </div>\n        <div class=\"card-footer\">\n          <a class=\"btn btn-success\" href=\"").concat(homeworld.url, "\"><span class=\"fas fa-globe-europe\"></span> Homeworld: ").concat(homeworld.name, "</a>\n          <a class=\"btn btn-primary\" href=\"").concat(species.url, "\"><span class=\"fas fa-dna\"></span> Species: ").concat(species.name, "</a>\n        <div>\n      </div>\n    ");
-
-                this._createFilmHtml();
-
-                this.content.appendChild(this.card);
-
-              case 10:
-              case "end":
-                return _context5.stop();
-            }
-          }
-        }, _callee5, this);
-      }));
-
-      function _createPersonHtml() {
-        return _createPersonHtml2.apply(this, arguments);
-      }
-
-      return _createPersonHtml;
     }()
   }]);
 
@@ -405,7 +392,7 @@ function (_StarWarsResource2) {
   _inherits(Film, _StarWarsResource2);
 
   function Film(film) {
-    var _this4;
+    var _this3;
 
     _classCallCheck(this, Film);
 
@@ -413,10 +400,10 @@ function (_StarWarsResource2) {
       args[_key2 - 1] = arguments[_key2];
     }
 
-    _this4 = _possibleConstructorReturn(this, _getPrototypeOf(Film).call(this, args));
+    _this3 = _possibleConstructorReturn(this, _getPrototypeOf(Film).call(this, args));
     console.log(film); // eslint-disable-line no-console
 
-    return _this4;
+    return _this3;
   }
 
   return Film;
@@ -431,7 +418,7 @@ function (_StarWarsResource3) {
   _inherits(Starship, _StarWarsResource3);
 
   function Starship(starship) {
-    var _this5;
+    var _this4;
 
     _classCallCheck(this, Starship);
 
@@ -439,10 +426,10 @@ function (_StarWarsResource3) {
       args[_key3 - 1] = arguments[_key3];
     }
 
-    _this5 = _possibleConstructorReturn(this, _getPrototypeOf(Starship).call(this, args));
+    _this4 = _possibleConstructorReturn(this, _getPrototypeOf(Starship).call(this, args));
     console.log(starship); // eslint-disable-line no-console
 
-    return _this5;
+    return _this4;
   }
 
   return Starship;
@@ -457,7 +444,7 @@ function (_StarWarsResource4) {
   _inherits(Vehicle, _StarWarsResource4);
 
   function Vehicle(vehicle) {
-    var _this6;
+    var _this5;
 
     _classCallCheck(this, Vehicle);
 
@@ -465,10 +452,10 @@ function (_StarWarsResource4) {
       args[_key4 - 1] = arguments[_key4];
     }
 
-    _this6 = _possibleConstructorReturn(this, _getPrototypeOf(Vehicle).call(this, args));
+    _this5 = _possibleConstructorReturn(this, _getPrototypeOf(Vehicle).call(this, args));
     console.log(vehicle); // eslint-disable-line no-console
 
-    return _this6;
+    return _this5;
   }
 
   return Vehicle;
@@ -483,7 +470,7 @@ function (_StarWarsResource5) {
   _inherits(Species, _StarWarsResource5);
 
   function Species(species) {
-    var _this7;
+    var _this6;
 
     _classCallCheck(this, Species);
 
@@ -491,10 +478,10 @@ function (_StarWarsResource5) {
       args[_key5 - 1] = arguments[_key5];
     }
 
-    _this7 = _possibleConstructorReturn(this, _getPrototypeOf(Species).call(this, args));
+    _this6 = _possibleConstructorReturn(this, _getPrototypeOf(Species).call(this, args));
     console.log(species); // eslint-disable-line no-console
 
-    return _this7;
+    return _this6;
   }
 
   return Species;
@@ -509,7 +496,7 @@ function (_StarWarsResource6) {
   _inherits(Planet, _StarWarsResource6);
 
   function Planet(planet) {
-    var _this8;
+    var _this7;
 
     _classCallCheck(this, Planet);
 
@@ -517,10 +504,10 @@ function (_StarWarsResource6) {
       args[_key6 - 1] = arguments[_key6];
     }
 
-    _this8 = _possibleConstructorReturn(this, _getPrototypeOf(Planet).call(this, args));
+    _this7 = _possibleConstructorReturn(this, _getPrototypeOf(Planet).call(this, args));
     console.log(planet); // eslint-disable-line no-console
 
-    return _this8;
+    return _this7;
   }
 
   return Planet;

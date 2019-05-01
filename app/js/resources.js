@@ -38,13 +38,6 @@ export class Person extends StarWarsResource {
     this._createPersonHtml();
   }
 
-  async _createFilmHtml() {
-    this.films.forEach(async (url) => {
-      const film = await this.getResource(url);
-      console.log('film:', film); // eslint-disable-line no-console
-    });
-  }
-
   async _createPersonHtml() {
     const homeworld = await this.homeworld;
     const species = await this.species;
@@ -64,8 +57,7 @@ export class Person extends StarWarsResource {
             <li>Eye color: ${this.eyeColor}</li>
             <li>Hair color: ${this.hairColor}</li>
           </ul>
-          <ul class="col-md-3 films">
-          </ul>
+          ${await this._createFilmHtml()}
         </div>
         <div class="card-footer">
           <a class="btn btn-success" href="${homeworld.url}"><span class="fas fa-globe-europe"></span> Homeworld: ${homeworld.name}</a>
@@ -74,8 +66,24 @@ export class Person extends StarWarsResource {
       </div>
     `;
 
-    this._createFilmHtml();
     this.content.appendChild(this.card);
+  }
+
+  async _createFilmHtml() {
+    const list = document.createElement('ul');
+    list.classList.add('col-md-3', 'films');
+
+    this.films.forEach(async (url) => {
+      const film = await this.getResource(url);
+      const item = document.createElement('li');
+      item.textContent = film.title;
+      debugger; //eslint-disable-line
+      list.appendChild(item);
+    });
+
+    console.log(list);
+
+    return list;
   }
 }
 
